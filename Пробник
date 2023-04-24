@@ -1,0 +1,41 @@
+//+------------------------------------------------------------------+
+//|                           Первый самостоятельный вместе с НС.mq4 |
+//|                        Copyright 2017, MetaQuotes Software Corp. |
+//|                                            Автор:Вячеслав Нилов  |
+//+------------------------------------------------------------------+
+#property copyright "Copyright 2021, MyCompany Inc."
+#property link      "https://www.mycompany.com"
+#property version   "1.00"
+#property strict
+
+//+------------------------------------------------------------------+
+//| Expert initialization function                                   |
+//+------------------------------------------------------------------+
+int OnInit()
+{
+   //--- Print current balance, equity, and profit/loss
+   double balance = AccountBalance();
+   double equity = AccountEquity();
+   double profit = equity - balance;
+   Print("Current balance: ", balance);
+   Print("Current equity: ", equity);
+   Print("Profit/Loss: ", profit);
+   
+   return(INIT_SUCCEEDED);
+}
+
+//+------------------------------------------------------------------+
+//| Expert deinitialization function                                 |
+//+------------------------------------------------------------------+
+void OnDeinit(const int reason)
+{
+   //--- Expert deinitialization code here
+}
+
+//+------------------------------------------------------------------+
+//| Expert tick function                                             |
+//+------------------------------------------------------------------+
+void OnTick()
+{
+   //--- Expert tick code here
+}
