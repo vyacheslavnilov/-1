@@ -3,39 +3,63 @@
 //|                        Copyright 2017, MetaQuotes Software Corp. |
 //|                                            Автор:Вячеслав Нилов  |
 //+------------------------------------------------------------------+
-#property copyright "Copyright 2021, MyCompany Inc."
-#property link      "https://www.mycompany.com"
-#property version   "1.00"
-#property strict
+#include <iostream>
+#include <cmath>
+#include <ctime>
+#include <cstdlib>
+#include <string>
+using namespace std;
 
-//+------------------------------------------------------------------+
-//| Expert initialization function                                   |
-//+------------------------------------------------------------------+
-int OnInit()
+double AccountBalance()
 {
-   //--- Print current balance, equity, and profit/loss
-   double balance = AccountBalance();
-   double equity = AccountEquity();
-   double profit = equity - balance;
-   Print("Current balance: ", balance);
-   Print("Current equity: ", equity);
-   Print("Profit/Loss: ", profit);
-   
-   return(INIT_SUCCEEDED);
+    return 10000.0;
 }
 
-//+------------------------------------------------------------------+
-//| Expert deinitialization function                                 |
-//+------------------------------------------------------------------+
-void OnDeinit(const int reason)
+void Buy(double price, int quantity)
 {
-   //--- Expert deinitialization code here
+    cout << "Buying " << quantity << " shares at $" << price << endl;
 }
 
-//+------------------------------------------------------------------+
-//| Expert tick function                                             |
-//+------------------------------------------------------------------+
+void Sell(double price, int quantity)
+{
+    cout << "Selling " << quantity << " shares at $" << price << endl;
+}
+
 void OnTick()
 {
-   //--- Expert tick code here
+    double balance = AccountBalance();
+    double price = 10.0;
+    int quantity = 100;
+
+    if (price < 9.0)
+    {
+        cout << "Price is too low, not buying" << endl;
+    }
+    else if (price > 11.0)
+    {
+        cout << "Price is too high, not buying" << endl;
+    }
+    else
+    {
+        double totalCost = price * quantity;
+        if (totalCost > balance)
+        {
+            cout << "Not enough funds to buy" << endl;
+        }
+        else
+        {
+            Buy(price, quantity);
+        }
+    }
+}
+
+int main()
+{
+    srand(time(NULL));
+    for (int i = 0; i < 10; i++)
+    {
+        double price = 8.0 + (rand() % 400) / 100.0;
+        OnTick();
+    }
+    return 0;
 }
